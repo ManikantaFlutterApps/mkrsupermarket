@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mkrsupermarket/Screens/SplashScreen.dart';
 
 import 'Screens/LoginScreen.dart';
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.pinkAccent),
       ),
-      home: LoginScreen(),
+      home: SplashScreen(),
     );
   }
 }

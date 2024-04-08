@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'DashBoardScreen.dart';
+import 'ForgotPasswordScreen.dart';
 import 'RegisterScreen.dart';
 import 'SquareTile.dart';
 
@@ -13,6 +15,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,13 +32,13 @@ class _LoginScreenState extends State<LoginScreen> {
             spaceInBetweenWidgets(20),
             displayInfoMessage(),
             spaceInBetweenWidgets(20),
-            textInputField("EmailAddress"),
+            textInputField("EmailAddress",emailController,false),
             spaceInBetweenWidgets(10),
-            textInputField("Password"),
+            textInputField("Password",passwordController,true),
             spaceInBetweenWidgets(10),
             textField("Forgot Password?"),
             spaceInBetweenWidgets(20),
-            signInButton(),
+            signInButton(emailController,passwordController),
             spaceInBetweenWidgets(20),
             addingSocialMediaLogins(),
             spaceInBetweenWidgets(20),
@@ -63,10 +69,12 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget textInputField(String email) {
+  Widget textInputField(String email,TextEditingController textEditingController, bool value) {
     return Padding(
       padding: const EdgeInsets.only(left: 25, right: 25),
       child: TextField(
+        obscureText: value,
+        controller: textEditingController,
         decoration: InputDecoration(
             hintText: email,
             enabledBorder: const OutlineInputBorder(
@@ -82,26 +90,46 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget textField(String forgotPassword) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 25),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Text(
-            forgotPassword,
-            style: const TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.normal),
-          )
-        ],
+    return GestureDetector(
+      onTap: (){
+        setState(() {
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  ForgotPasswordScreen()));
+        });
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(right: 25),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              forgotPassword,
+              style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal),
+            )
+          ],
+        ),
       ),
     );
   }
 
-  Widget signInButton() {
+  Widget signInButton(TextEditingController emailController, TextEditingController passwordController) {
     return GestureDetector(
-      onTap: (){},
+      onTap: (){
+
+        var email = emailController.text;
+        var password = passwordController.text;
+
+        if (email.isEmpty && password.isEmpty){
+          print("Please Enter Email and Password");
+        } else {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const DashBoardScreen()));
+        }
+
+
+
+      },
       child: Container(
         margin: EdgeInsets.only(left: 20,right: 20),
         width: double.infinity,
