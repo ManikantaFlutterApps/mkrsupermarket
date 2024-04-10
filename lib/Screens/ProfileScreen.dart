@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -14,7 +15,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   TextEditingController mobileNumberController = TextEditingController();
   TextEditingController emailAddressController = TextEditingController();
 
-  var isEnabledValue = false;
+  var isEnabledValueForFirstName = false;
+  var isEnabledValueForLastName = false;
+  var isEnabledValueForMobileNumber = false;
+  var isEnabledValueForEmailAddress = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -22,63 +27,180 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          textFormInputFieldData(
-              firstNameController, "Display First Name", isEnabledValue),
 
-          const SizedBox(height: 15,),
-
-          textFormInputFieldData(lastNameController , "Display Last Name",isEnabledValue),
-
-          const SizedBox(height: 15,),
-
-          textFormInputFieldData(mobileNumberController , "Display MobileNumber",isEnabledValue),
-
-          const SizedBox(height: 15,),
-
-          textFormInputFieldData(emailAddressController , "Display EmailAddress",isEnabledValue),
-
-          SizedBox(height: 15,),
-
-        ],
-      ),
-    );
-  }
-
-  Widget textFormInputFieldData(TextEditingController textEditingController,
-      String hintValue, bool isEnabled) {
-    return Container(
-      margin: EdgeInsets.only(left: 25,right: 25),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            flex: 9,
-            child: Container(
-              margin: const EdgeInsets.only(left: 25, right: 25),
-              child: TextFormField(
-                enabled: isEnabled,
-                controller: textEditingController,
-                decoration: InputDecoration(
-                  hintText: hintValue,
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.greenAccent, width: 2.0),
+          Container(
+            margin: const EdgeInsets.only(left: 25,right: 25),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  flex: 9,
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 25, right: 25),
+                    child: TextFormField(
+                      enabled: isEnabledValueForFirstName,
+                      controller: firstNameController,
+                      decoration: const InputDecoration(
+                        hintText: "Display First Name",
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green, width: 1.0),
+                        ),
+                      ),
+                    ),
                   ),
-                  enabledBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.red, width: 2.0),
+                ),
+                Expanded(
+                    flex: 1,
+                    child: GestureDetector(
+                        onTap: (){
+                          setState(() {
+                            isEnabledValueForFirstName = true;
+                          });
+                        },
+                        child: Icon(Icons.edit)))
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 15,),
+
+
+          Container(
+            margin: const EdgeInsets.only(left: 25,right: 25),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  flex: 9,
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 25, right: 25),
+                    child: TextFormField(
+                      enabled: isEnabledValueForLastName,
+                      controller: lastNameController,
+                      decoration: const InputDecoration(
+                        hintText: "Display Last Name",
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green, width: 1.0),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                    flex: 1,
+                    child: GestureDetector(
+                        onTap: (){
+                          setState(() {
+                            isEnabledValueForLastName = true;
+                          });
+                        },
+                        child: Icon(Icons.edit)))
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 15,),
+
+          Container(
+            margin: const EdgeInsets.only(left: 25,right: 25),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  flex: 9,
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 25, right: 25),
+                    child: TextFormField(
+                      enabled: isEnabledValueForMobileNumber,
+                      controller: mobileNumberController,
+                      decoration: const InputDecoration(
+                        hintText: "Display MobileNumber",
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green, width: 1.0),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                    flex: 1,
+                    child: GestureDetector(
+                        onTap: (){
+                          setState(() {
+                            isEnabledValueForMobileNumber = true;
+                          });
+                        },
+                        child: Icon(Icons.edit)))
+              ],
+            ),
+          ),
+
+
+          const SizedBox(height: 15,),
+
+          Container(
+            margin: const EdgeInsets.only(left: 25,right: 25),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  flex: 9,
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 25, right: 25),
+                    child: TextFormField(
+                      enabled: isEnabledValueForEmailAddress,
+                      controller: emailAddressController,
+                      decoration: const InputDecoration(
+                        hintText: "Display EmailAddress",
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green, width: 1.0),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                    flex: 1,
+                    child: GestureDetector(
+                        onTap: (){
+                          setState(() {
+                            isEnabledValueForEmailAddress = true;
+                          });
+                        },
+                        child: Icon(Icons.edit)))
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 30,),
+
+          GestureDetector(
+            onTap: (){
+              setState(() {
+
+              });
+            },
+            child: Container(
+              margin: EdgeInsets.only(left: 20, right: 20),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Center(
+                child: Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: Text(
+                    "UPDATE",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18),
                   ),
                 ),
               ),
             ),
           ),
-          Expanded(
-              flex: 1,
-              child: GestureDetector(
-                  onTap: (){
-                    setState(() {
-                      isEnabledValue = true;
-                    });
-                  },
-                  child: Icon(Icons.edit)))
         ],
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -11,8 +12,260 @@ class SettingScreen extends StatefulWidget {
 class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("SETTINGS",style: TextStyle(color: Colors.orangeAccent,fontWeight: FontWeight.bold,fontSize: 25),),
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+
+            profileCard(),
+
+            const SizedBox(height: 10,),
+
+            apperanceCard(),
+
+            const SizedBox(height: 10,),
+
+            privacyCard(),
+
+            const SizedBox(height: 10,),
+
+            aboutUS(),
+
+            const SizedBox(height: 10,),
+
+            sendFeedBack(),
+
+            const SizedBox(height: 10,),
+
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget profileCard() {
+    return GestureDetector(
+      onTap: (){
+        setState(() {
+
+        });
+      },
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
+        ),
+        color: Colors.orangeAccent,
+        child: SizedBox(
+          height: 120,
+          width: double.infinity,
+          child: Row(
+            children: [
+              Expanded(
+                flex: 4,
+                child: Image.asset(
+                  'lib/images/profile_pic.png',
+                  height: 50,
+                  width: 50,
+                ),
+              ),
+
+              const Expanded(
+                  flex: 6,
+                  child: Text("Manikanta",style: TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.bold,),))
+
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget apperanceCard() {
+
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      color: Colors.white,
+      child: SizedBox(
+        height: 80,
+        width: double.infinity,
+        child: Row(children: [
+
+          const SizedBox(width: 5,),
+
+          Expanded(
+              flex: 1,
+              child: Image.asset('lib/images/setting_icon.jpeg',height: 25,width: 25,)),
+
+          const SizedBox(width: 20,),
+
+          const Expanded(
+              flex: 8,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  
+                  Text("Apperance",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 18),),
+
+                  SizedBox(height: 10,),
+
+                  Text("Make Your Profile Picture",style: TextStyle(color: Colors.grey,fontWeight: FontWeight.normal,fontSize: 13),),
+                ],
+              ),),
+
+          const Expanded(
+              flex: 1,
+              child: Icon(Icons.arrow_back_ios_new_sharp,)),
+
+          const SizedBox(width: 20,)
+
+
+
+        ],),
+      ),
+    );
+  }
+
+  Widget privacyCard() {
+
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      color: Colors.white,
+      child: SizedBox(
+        height: 80,
+        width: double.infinity,
+        child: Row(children: [
+
+          const SizedBox(width: 5,),
+
+          Expanded(
+              flex: 1,
+              child: Image.asset('lib/images/setting_icon.jpeg',height: 25,width: 25,)),
+
+          const SizedBox(width: 20,),
+
+          const Expanded(
+            flex: 8,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+
+                Text("Privacy",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 18),),
+
+                SizedBox(height: 10,),
+
+                Text("Make Your Privacy Data",style: TextStyle(color: Colors.grey,fontWeight: FontWeight.normal,fontSize: 13),),
+              ],
+            ),),
+
+          const Expanded(
+              flex: 1,
+              child: Icon(Icons.arrow_back_ios_new_sharp,)),
+
+          const SizedBox(width: 20,)
+
+
+
+        ],),
+      ),
+    );
+  }
+
+  Widget aboutUS() {
+
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      color: Colors.white,
+      child: SizedBox(
+        height: 80,
+        width: double.infinity,
+        child: Row(children: [
+
+          const SizedBox(width: 5,),
+
+          Expanded(
+              flex: 1,
+              child: Image.asset('lib/images/setting_icon.jpeg',height: 25,width: 25,)),
+
+          const SizedBox(width: 20,),
+
+          const Expanded(
+            flex: 8,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+
+                Text("AboutUS",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 18),),
+
+                SizedBox(height: 10,),
+
+                Text("About Me",style: TextStyle(color: Colors.grey,fontWeight: FontWeight.normal,fontSize: 13),),
+              ],
+            ),),
+
+          const Expanded(
+              flex: 1,
+              child: Icon(Icons.arrow_back_ios_new_sharp,)),
+
+          const SizedBox(width: 20,)
+
+        ],),
+      ),
+    );
+  }
+
+  Widget sendFeedBack() {
+
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      color: Colors.white,
+      child: SizedBox(
+        height: 80,
+        width: double.infinity,
+        child: Row(children: [
+
+          const SizedBox(width: 5,),
+
+          Expanded(
+              flex: 1,
+              child: Image.asset('lib/images/setting_icon.jpeg',height: 25,width: 25,)),
+
+          const SizedBox(width: 20,),
+
+          const Expanded(
+            flex: 8,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+
+                Text("SendFeedBack",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 18),),
+
+                SizedBox(height: 10,),
+
+                Text("Please Give Feedback Message",style: TextStyle(color: Colors.grey,fontWeight: FontWeight.normal,fontSize: 13),),
+              ],
+            ),),
+
+          const Expanded(
+              flex: 1,
+              child: Icon(Icons.arrow_back_ios_new_sharp,)),
+
+          const SizedBox(width: 20,)
+
+        ],),
+      ),
     );
   }
 }
