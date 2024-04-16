@@ -26,11 +26,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Sai Balaji Residency ,Nagundahalli Main Road , Bangalore",style: TextStyle(fontSize: 10,color: Colors.black,fontWeight: FontWeight.normal),),
+                    Text("Sai Balaji Residency ,Nagundahalli Main Road , Bangalore",style: TextStyle(fontSize: 10,color: Colors.blueAccent,fontWeight: FontWeight.normal),),
 
                     SizedBox(height: 5,),
 
-                    Text("6:00 AM - 11:00 PM",style: TextStyle(fontSize: 8,color: Colors.black,fontWeight: FontWeight.bold),),
+                    Text("6:00 AM - 11:00 PM",style: TextStyle(fontSize: 8,color: Colors.redAccent,fontWeight: FontWeight.bold),),
 
                   ],
                 ),
