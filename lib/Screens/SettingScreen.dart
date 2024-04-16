@@ -36,7 +36,9 @@ class _SettingScreenState extends State<SettingScreen> {
 
             sendFeedBack(),
 
-            const SizedBox(height: 10,),
+            const SizedBox(height: 30,),
+
+            logOutAction()
 
           ],
         ),
@@ -265,6 +267,34 @@ class _SettingScreenState extends State<SettingScreen> {
           const SizedBox(width: 20,)
 
         ],),
+      ),
+    );
+  }
+
+  Widget logOutAction() {
+    return GestureDetector(
+      onTap: (){
+        print("CLICKED ON LOGOUT");
+      },
+      child: Container(
+        margin: const EdgeInsets.only(left: 20, right: 20),
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: const Center(
+          child: Padding(
+            padding: EdgeInsets.all(12.0),
+            child: Text(
+              "LOG OUT",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18),
+            ),
+          ),
+        ),
       ),
     );
   }
