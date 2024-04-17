@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:mkrsupermarket/Screens/LoginScreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -274,7 +276,14 @@ class _SettingScreenState extends State<SettingScreen> {
   Widget logOutAction() {
     return GestureDetector(
       onTap: (){
-        print("CLICKED ON LOGOUT");
+
+        setState(() async {
+          SharedPreferences mSharedPreference = await SharedPreferences.getInstance();
+          mSharedPreference.setString("EMAIL","");
+          mSharedPreference.setString("PASSWORD","");
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+        });
+
       },
       child: Container(
         margin: const EdgeInsets.only(left: 20, right: 20),

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mkrsupermarket/Screens/LoginScreen.dart';
 
 import 'IntroScreens.dart';
 
@@ -19,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    Timer(const Duration(seconds: 5),(){
+    Timer(const Duration(seconds: 2),(){
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  IntroScreens()));
     });
   }

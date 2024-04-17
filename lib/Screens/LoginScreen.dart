@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'DashBoardScreen.dart';
 import 'ForgotPasswordScreen.dart';
@@ -124,7 +124,15 @@ class _LoginScreenState extends State<LoginScreen> {
         if (email.isEmpty && password.isEmpty){
           print("Please Enter Email and Password");
         } else {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const DashBoardScreen()));
+
+          setState(() async {
+            SharedPreferences mSharedPreference = await SharedPreferences.getInstance();
+            mSharedPreference.setString("EMAIL",email);
+            mSharedPreference.setString("PASSWORD",password);
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const DashBoardScreen()));
+          });
+
+
         }
 
 

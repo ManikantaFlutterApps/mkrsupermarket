@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:mkrsupermarket/Screens/LoginScreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'DashBoardScreen.dart';
 
 class IntroScreens extends StatefulWidget {
   const IntroScreens({super.key});
@@ -10,6 +13,30 @@ class IntroScreens extends StatefulWidget {
 }
 
 class _IntroScreensState extends State<IntroScreens> {
+
+  String email = "";
+  String password = "";
+
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      SharedPreferences mSharedPreference = await SharedPreferences.getInstance();
+      email = mSharedPreference.getString("EMAIL")!;
+      password = mSharedPreference.getString("PASSWORD")!;
+
+      if (email.isNotEmpty && password.isNotEmpty) {
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  DashBoardScreen()));
+      }
+
+
+    });
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +65,7 @@ class _IntroScreensState extends State<IntroScreens> {
           )
         ],
         onDone: () {
+
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  LoginScreen()));
 
         },
