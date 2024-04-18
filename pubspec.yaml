@@ -38,6 +38,8 @@ dependencies:
   introduction_screen: ^3.1.14
   geocoding: ^3.0.0
   shared_preferences: ^2.2.3
+  sqflite: ^2.3.3
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

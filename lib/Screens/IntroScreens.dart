@@ -26,11 +26,10 @@ class _IntroScreensState extends State<IntroScreens> {
       SharedPreferences mSharedPreference = await SharedPreferences.getInstance();
       email = mSharedPreference.getString("EMAIL")!;
       password = mSharedPreference.getString("PASSWORD")!;
-
       if (email.isNotEmpty && password.isNotEmpty) {
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  DashBoardScreen()));
-      }
 
+      }
 
     });
   }

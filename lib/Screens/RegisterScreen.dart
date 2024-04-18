@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mkrsupermarket/Database/DBHelper.dart';
+import 'package:mkrsupermarket/Models/Customer.dart';
 
 import 'OTPScreen.dart';
 
@@ -35,36 +37,38 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[300],
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            addPersonIcon(),
-            spaceInBetweenWidgets(5),
-            textFormInputField(
-                "FirstName", TextInputType.name, false, firstNameController),
-            spaceInBetweenWidgets(5),
-            textFormInputField(
-                "LastName", TextInputType.name, false, lastNameController),
-            spaceInBetweenWidgets(5),
-            textFormInputField(
-                "Password", TextInputType.text, true, passwordController),
-            spaceInBetweenWidgets(5),
-            textFormInputField("MobileNumber", TextInputType.phone, false,
-                mobileNumberController),
-            spaceInBetweenWidgets(5),
-            textFormInputField("EmailAddress", TextInputType.emailAddress,
-                false, emailAddressController),
-            spaceInBetweenWidgets(5),
-            textFormFieldWithIcon("DOB", TextInputType.datetime,
-                dateOfBirthController, selectedDate),
-            spaceInBetweenWidgets(5),
-            genderDataInput(),
-            spaceInBetweenWidgets(5),
-            dropDownWithDesignation(),
-            spaceInBetweenWidgets(5),
-            registerButton(),
-          ],
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              addPersonIcon(),
+              spaceInBetweenWidgets(5),
+              textFormInputField(
+                  "FirstName", TextInputType.name, false, firstNameController),
+              spaceInBetweenWidgets(5),
+              textFormInputField(
+                  "LastName", TextInputType.name, false, lastNameController),
+              spaceInBetweenWidgets(5),
+              textFormInputField(
+                  "Password", TextInputType.text, true, passwordController),
+              spaceInBetweenWidgets(5),
+              textFormInputField("MobileNumber", TextInputType.phone, false,
+                  mobileNumberController),
+              spaceInBetweenWidgets(5),
+              textFormInputField("EmailAddress", TextInputType.emailAddress,
+                  false, emailAddressController),
+              spaceInBetweenWidgets(5),
+              textFormFieldWithIcon("DOB", TextInputType.datetime,
+                  dateOfBirthController, selectedDate),
+              spaceInBetweenWidgets(5),
+              genderDataInput(),
+              spaceInBetweenWidgets(5),
+              dropDownWithDesignation(),
+              spaceInBetweenWidgets(5),
+              registerButton(),
+            ],
+          ),
         ),
       ),
     );
@@ -222,9 +226,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
             gender = " Others";
           }
 
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const OTPScreen()));
+          final customer = Customer(
+              firstName: firstName,
+              lastName: lastName,
+              password: password,
+              mobileNumber: mobileNumber,
+              emailAddress: emailAddress,
+              gender: gender,
+              designation: selectedDesignation);
 
+              var customerData = DBHelper.instance.insertCustomerDetails(customer);
+              if (customerData != null) {
+                print(customer.firstName);
+                print(customer.lastName);
+                print(customer.gender);
+                print(customer.mobileNumber);
 
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const OTPScreen()));
+              }
         });
       },
       child: Container(
