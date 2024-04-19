@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mkrsupermarket/Models/Customer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../Database/DBHelper.dart';
+import '../Models/Category.dart';
 import 'DashBoardScreen.dart';
 import 'ForgotPasswordScreen.dart';
 import 'RegisterScreen.dart';
@@ -18,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  late Customer customer;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -121,18 +124,30 @@ class _LoginScreenState extends State<LoginScreen> {
         var email = emailController.text;
         var password = passwordController.text;
 
+
         if (email.isEmpty && password.isEmpty){
           print("Please Enter Email and Password");
         } else {
 
           setState(() async {
-            SharedPreferences mSharedPreference = await SharedPreferences.getInstance();
-            mSharedPreference.setString("EMAIL",email);
-            mSharedPreference.setString("PASSWORD",password);
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const DashBoardScreen()));
+            this.customer = await DBHelper.instance.performLoginValidation(email,password);
+            if(customer != null) {
+
+              SharedPreferences mSharedPreference = await SharedPreferences.getInstance();
+              mSharedPreference.setString("EMAIL",email);
+              mSharedPreference.setString("PASSWORD",password);
+
+              DBHelper.instance.insertCategoryDetails(const Category(categoryName: "FRUITS"));
+              DBHelper.instance.insertCategoryDetails(const Category(categoryName: "VEGETABLES"));
+              DBHelper.instance.insertCategoryDetails(const Category(categoryName: "MILK"));
+              DBHelper.instance.insertCategoryDetails(const Category(categoryName: "MEAT"));
+              DBHelper.instance.insertCategoryDetails(const Category(categoryName: "SNACKS"));
+              DBHelper.instance.insertCategoryDetails(const Category(categoryName: "RICE"));
+
+
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const DashBoardScreen()));
+            }
           });
-
-
         }
 
 

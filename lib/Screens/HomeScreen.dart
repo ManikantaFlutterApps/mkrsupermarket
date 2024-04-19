@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:mkrsupermarket/Models/Category.dart';
 
+import '../Database/DBHelper.dart';
 import 'CategoryDetailedScreen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,9 +13,24 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  late List<Category> categoryList;
   TextEditingController searchController = TextEditingController();
 
-  List<Category> categoryList = [
+
+  @override
+  void initState() async {
+    // TODO: implement initState
+    super.initState();
+    categoryList= await DBHelper.instance.readCategoryDataList();
+    print("Category Size ${categoryList.length}");
+
+  }
+
+
+
+
+  /*List<Category> categoryList = [
     Category(categoryID: "1001", categoryName: "FRUITS"),
     Category(categoryID: "1002", categoryName: "VEGETABLES"),
     Category(categoryID: "1003", categoryName: "MILK"),
@@ -22,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Category(categoryID: "1005", categoryName: "SNACKS"),
     Category(categoryID: "1006", categoryName: "RICE"),
   ];
-
+*/
   @override
   Widget build(BuildContext context) {
     return Container(

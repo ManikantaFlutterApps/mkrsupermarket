@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:mkrsupermarket/Screens/LoginScreen.dart';
 
 class OTPScreen extends StatefulWidget {
   const OTPScreen({super.key});
@@ -150,7 +151,8 @@ class _OTPScreenState extends State<OTPScreen> {
                 var inputFour = int.parse(inputFourController.text);
                 
                 
-                if (inputOne != 0 && inputTwo != 0 && inputThree !=0 && inputFour !=0){
+                if (inputOne != 0 && inputTwo != 0 && inputThree !=0 && inputFour !=0) {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
                   
                 }else {
                   var snackBar = const SnackBar(content: Text('Please Enter OPT Number'));
